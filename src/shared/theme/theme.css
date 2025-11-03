@@ -1,0 +1,21 @@
+:root {
+  --bg: #ffffff;
+  --text: #0a0a0a;
+  --muted: #6b7280;
+  --card: #f6f7f9;
+  --accent: #2563eb;
+  --error: #b91c1c;
+  --ok: #065f46;
+  --border: #e5e7eb;
+}
+
+:root.dark {
+  --bg: #0f141a;
+  --text: #e6edf3;
+  --muted: #aea39a;
+  --card: #1b222a;
+  --accent: #3b82f6;
+  --error: #ef4444;
+  --ok: #10b981;
+  --border: #2b3440;
+}

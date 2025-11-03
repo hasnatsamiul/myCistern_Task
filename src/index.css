@@ -1,0 +1,454 @@
+/* ------------------ Reset & Base ------------------ */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+html,
+body,
+#root {
+  height: 100%;
+}
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue",
+    Arial;
+  line-height: 1.5;
+}
+
+/* ------------------ Layout ------------------ */
+.shell {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* ------------------ Topbar Layout ------------------ */
+.topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 64px;
+  padding: 0 24px;
+  border-bottom: 1px solid var(--border);
+  background: var(--card);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+/* ------------------ Search Bar ------------------ */
+.search-bar {
+  position: relative;
+  width: 100%;
+  max-width: 360px;
+  display: flex;
+  align-items: center;
+}
+
+.search-bar .input {
+  width: 100%;
+  padding: 10px 38px 10px 14px;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  background: var(--card);
+  color: var(--text);
+  font-size: 0.95rem;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.search-bar .input::placeholder {
+  color: var(--muted);
+  opacity: 0.8;
+}
+
+.search-bar .input:hover {
+  border-color: rgba(37, 99, 235, 0.3);
+}
+
+.search-bar .input:focus {
+  outline: none;
+  border-color: rgba(37, 99, 235, 0.5);
+  box-shadow: 0 0 6px rgba(37, 99, 235, 0.25);
+}
+
+.search-icon {
+  position: absolute;
+  right: 12px;
+  font-size: 1.1rem;
+  color: var(--muted);
+  pointer-events: none;
+}
+
+/* ------------------ Page Title ------------------ */
+.page-title {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 1.9rem;
+  font-weight: 700;
+  color: var(--text);
+  background: rgba(37, 99, 235, 0.08);
+  border-left: 6px solid rgba(37, 99, 235, 0.6);
+  padding: 10px 20px;
+  border-radius: 10px;
+  margin-bottom: 24px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+}
+
+.page-title:hover {
+  background: rgba(37, 99, 235, 0.12);
+  transform: translateY(-2px);
+  transition: background 0.2s, transform 0.2s;
+}
+
+/* brand name  */
+.brand {
+  font-weight: 800;
+  font-size: 1.5rem;
+  color: var(--accent);
+  letter-spacing: 0.5px;
+  position: relative;
+}
+.brand::after {
+  color: var(--ok);
+  font-size: 1.6rem;
+  position: relative;
+  top: -2px;
+}
+
+/* Center: Devices pill */
+.nav.center {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.nav-chip {
+  text-decoration: none;
+  background: rgba(37, 99, 235, 0.08);
+  color: var(--text);
+  border: 1px solid var(--border);
+  padding: 8px 18px;
+  border-radius: 999px;
+  font-weight: 600;
+  font-size: 0.95rem;
+  transition: background 0.2s, transform 0.2s, border-color 0.2s;
+}
+.nav-chip:hover {
+  background: rgba(37, 99, 235, 0.15);
+  transform: translateY(-1px);
+}
+.nav-chip.active {
+  background: rgba(37, 99, 235, 0.2);
+  border-color: rgba(37, 99, 235, 0.3);
+}
+
+/* Theme + Language */
+.topbar-right {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.select,
+.btn {
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  padding: 6px 10px;
+  background: var(--card);
+  color: var(--text);
+  cursor: pointer;
+  font-size: 0.9rem;
+}
+.btn:hover {
+  background: rgba(37, 99, 235, 0.08);
+}
+.select {
+  min-width: 80px;
+}
+
+/* ------------------ Main Content ------------------ */
+.content {
+  flex: 1;
+  padding: 30px 40px;
+  width: 100%;
+  max-width: none;
+  margin: 0;
+}
+
+/* ------------------ Device List Cards ------------------ */
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+  gap: 28px;
+  margin-top: 28px;
+}
+
+.card {
+  position: relative;
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  background: var(--card);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+  padding: 22px 24px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: all 0.2s ease;
+  cursor: pointer;
+  overflow: hidden;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.08);
+  border-color: rgba(37, 99, 235, 0.3);
+}
+
+/* Accent bar */
+.card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 5px;
+  background: rgba(37, 99, 235, 0.35);
+  border-top-left-radius: 14px;
+  border-top-right-radius: 14px;
+}
+
+/* Head and Body */
+.card-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.card-head strong {
+  font-size: 1.1rem;
+  color: var(--text);
+}
+
+.card-body {
+  font-size: 0.95rem;
+  color: var(--muted);
+  line-height: 1.5;
+}
+
+.card-foot {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 18px;
+}
+
+/* View Details Button */
+.card .btn {
+  background: rgba(229, 231, 235, 0.7);
+  color: var(--text);
+  border: 1px solid var(--border);
+  padding: 8px 16px;
+  border-radius: 8px;
+  font-weight: 500;
+  font-size: 0.9rem;
+  text-decoration: none;
+  transition: background 0.2s ease, transform 0.2s ease, border-color 0.2s ease;
+}
+
+.card .btn:hover {
+  background: rgba(37, 99, 235, 0.1);
+  transform: translateY(-2px);
+}
+
+/* ------------------ Badges ------------------ */
+.badge {
+  padding: 2px 8px;
+  border-radius: 6px;
+  font-size: 12px;
+  text-transform: capitalize;
+  border: 1px solid transparent;
+}
+.badge.online {
+  background: rgba(16, 185, 129, 0.15);
+  color: var(--ok);
+  border-color: var(--ok);
+}
+.badge.offline {
+  background: rgba(239, 68, 68, 0.15);
+  color: var(--error);
+  border-color: var(--error);
+}
+
+/* ------------------ Inputs ------------------ */
+.input {
+  padding: 8px 10px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  width: 100%;
+  max-width: 320px;
+  background: var(--bg);
+  color: var(--text);
+  font-size: 0.9rem;
+}
+.toolbar {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  margin: 16px 0;
+}
+
+/* ------------------ Pager ------------------ */
+.pager {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 16px;
+  justify-content: center;
+}
+
+/* ------------------ Back Button ------------------ */
+.link.back {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  text-decoration: none;
+  color: var(--accent);
+  font-weight: 500;
+  padding: 8px 14px;
+  border: 1px solid var(--accent);
+  border-radius: 8px;
+  transition: background 0.2s, color 0.2s;
+  margin-bottom: 16px;
+}
+.link.back:hover {
+  background: var(--accent);
+  color: #fff;
+}
+.link.back::before {
+  content: "←";
+  font-size: 1rem;
+  line-height: 1;
+}
+
+/* ------------------ Loader / Empty / Error ------------------ */
+.loader,
+.empty,
+.error {
+  border: 1px dashed var(--border);
+  background: var(--card);
+  padding: 20px;
+  border-radius: 12px;
+  text-align: center;
+  color: var(--muted);
+}
+.error h2 {
+  color: var(--error);
+  margin-bottom: 8px;
+}
+
+/* ------------------ Device Detail ------------------ */
+.detail .grid {
+  display: grid;
+  gap: 16px;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  margin-top: 16px;
+}
+.panel {
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: var(--card);
+  padding: 16px;
+}
+.metrics {
+  display: grid;
+  gap: 6px;
+}
+.metric {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.95rem;
+}
+.metric.updated {
+  color: var(--muted);
+  font-size: 0.8rem;
+  margin-top: 4px;
+}
+.commands .row {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+.toast {
+  margin-top: 10px;
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+
+/* ------------------ Color Boxes ------------------ */
+.color-box {
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.05);
+  background: var(--card);
+  border-left: 6px solid transparent;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+.color-box:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.08);
+}
+.color-box.info {
+  border-left-color: #799ce8;
+  background: rgba(37, 99, 235, 0.05);
+}
+.color-box.metrics {
+  border-left-color: #059669;
+  background: rgba(5, 150, 105, 0.05);
+}
+.color-box.commands {
+  border-left-color: #f59e0b;
+  background: rgba(245, 158, 11, 0.05);
+}
+
+/* ------------------ Device Title Box ------------------ */
+.color-box.title {
+  border-radius: 12px;
+  padding: 20px 24px;
+  margin-bottom: 20px;
+  border-left: 6px solid #9333ea;
+  background: rgba(147, 51, 234, 0.06);
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.05);
+}
+.device-title {
+  font-size: 1.6rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--text);
+}
+
+/* ------------------ Themes ------------------ */
+:root {
+  --bg: #f9fafb;
+  --text: #111827;
+  --muted: #505153;
+  --card: #ffffff;
+  --accent: #2563eb;
+  --error: #dc2626;
+  --ok: #059669;
+  --border: #e5e7eb;
+}
+:root.dark {
+  --bg: #0f141a;
+  --text: #e6edf3;
+  --muted: #9aa4ae;
+  --card: #1b222a;
+  --accent: #3b82f6;
+  --error: #ef4444;
+  --ok: #10b981;
+  --border: #2b3440;
+}
