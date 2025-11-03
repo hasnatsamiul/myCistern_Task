@@ -1,7 +1,16 @@
 # React + TypeScript + Vite
 
 A responsive web dashboard for monitoring and controlling smart cistern (IoT) devices.  
-Built with **React 18**, **TypeScript**, **React Query**, **React Router**, and **Plain CSS**, it showcases device listing, telemetry metrics, and control commands in a clean, theme-aware UI.
+Built with **React 18**, **TypeScript**, **React Query**, **React Router**, and **Plain CSS**, it showcases device listing and control commands in a clean, theme-aware UI.
+
+
+## Live Demo
+
+**https://my-cistern-task.vercel.app**
+
+_(Deployed on Vercel)_
+
+
 
 ## Quick Start
 
