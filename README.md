@@ -1,73 +1,86 @@
 # React + TypeScript + Vite
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A responsive web dashboard for monitoring and controlling smart cistern (IoT) devices.  
+Built with **React 18**, **TypeScript**, **React Query**, **React Router**, and **Plain CSS**, it showcases device listing, telemetry metrics, and control commands in a clean, theme-aware UI.
 
-Currently, two official plugins are available:
+## Quick Start
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+```bash
+# 1. Clone
+git clone <your-repo-url>
+cd mycistern
 
-## React Compiler
+# 2. Install dependencies
+pnpm install
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+# 3. Run the development server
+pnpm dev
 
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+# 4. Open in browser
+http://localhost:5173
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## Architecture
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+- **src/app/**
+  - App shell, router, global theme + i18n providers
+  - Online/offline status badges.
+  - Graceful loading, empty, and error states.
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+- **src/api/**
+  - Mock API (getDevices, getDeviceDetails, getDeviceMetrics, postDeviceCommand)
+
+- **src/features/devices/**
+  - Feature modules: list, detail, metrics, send command
+
+- **src/shared/**
+ - Shared components, i18n context, theme context, error/loader views
+
+- **src/index.css**
+  - Plain CSS styling, theming variables, responsive layout
+
+## Features
+
+- **Plate Management**
+  - Paginated list with search filter.
+  - Online/offline status badges.
+  - Graceful loading, empty, and error states.
+
+- **Device Detail**
+  - Displays cistern info, firmware, and location.
+  - Color-coded info boxes for metrics and commands.
+  - Back navigation
+
+- **Live Metrics**
+  - Auto-updates every 5 seconds using React Query.
+  - Shows temperature, fill level, battery status.
+  - Handles network errors gracefully.
+
+- **Send Command**
+  - Buttons for PING, REBOOT, VALVE OPEN.
+  - Disabled while pending.
+  - Messages on success/error
+
+- **Theming & i18n**
+  - Light/dark mode toggle
+  - English / German language switch
+
+- **Error Handling & Routing**
+  - Unified error + retry component
+  - 404 for invalid url.
+
+## Assumptions
+
+- API endpoints are mocked for local demo
+
+- React Query caching handles real backend integration
+
+- No authentication or user roles
+
+- Single-page app optimized for desktop view
+
+## Limitations
+
+- Data resets on refresh (mock only)
+- Polling interval fixed (configurable in future)
+ 
